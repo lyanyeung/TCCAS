@@ -1,0 +1,20 @@
+# Never commit experiment data or storage archives
+*.tar
+*.tar.gz
+*.nc
+*.nc4
+*.cdf
+*.csv
+*.dat
+*.RData
+*.log
+*.manifest.json
+*.sha256
+*.partial
+*.o
+*.mod
+*.exe
+.env
+*.pem
+*.key
+__pycache__/
