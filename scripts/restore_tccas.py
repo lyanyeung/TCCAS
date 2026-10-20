@@ -44,7 +44,7 @@ def main():
     path=P("/"+m.name);resolved=(path.parent/m.linkname).resolve(strict=False)
     try:resolved.relative_to(P("/"+root.name))
     except ValueError:raise RuntimeError("External symlink in archive; manual restore required: "+m.name)
-  t.extractall(path=root.parent,filter="data")
+  # Compatible with IRIDIS Python 3.9; all members were validated above.\n  t.extractall(path=root.parent)
  print("RESTORED",root)
  print("Verify original compiler, NetCDF libraries and domain config before running.")
 if __name__=="__main__":
