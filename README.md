@@ -30,10 +30,10 @@ The inspect mode performs no writes and reports selected sources, symbolic links
 bash scripts/run_once.sh copy
 
 # If satisfied that the directory is unused, attempt a verified move:
-bash scripts/run_once.sh move
+TCCAS_CONFIRM_DELETE=YES bash scripts/run_once.sh move
 ```
 
-The archive is written **directly to Research Filestore** as `*.tar.gz`, `*.manifest.json`, and a SHA-256 receipt. No temporary full-size archive is made on Scratch. The `move` mode deletes a selected original only after archive verification, unchanged-source checks, and Slurm/job/symlink safety gates. It will refuse deletion if it detects links to outside the source tree or active relevant jobs. No CLM-FATES case directories or CIME restarts are targeted. If the archive already exists, it is re-verified instead of overwritten. Check final output and `myfiles`; do not treat copy alone as Scratch cleanup.
+**The \`move\` command requires \`TCCAS_CONFIRM_DELETE=YES\` and should only be run after checking that no workflows depend on the source path.** If uncertain, use \`copy\` only.\n\nThe archive is written **directly to Research Filestore** as `*.tar.gz`, `*.manifest.json`, and a SHA-256 receipt. No temporary full-size archive is made on Scratch. The `move` mode deletes a selected original only after archive verification, unchanged-source checks, and Slurm/job/symlink safety gates. It will refuse deletion if it detects links to outside the source tree or active relevant jobs. No CLM-FATES case directories or CIME restarts are targeted. If the archive already exists, it is re-verified instead of overwritten. Check final output and `myfiles`; do not treat copy alone as Scratch cleanup.
 
 To include another *confirmed* TCCAS installation, use e.g. `python3 scripts/archive_tccas.py inspect --source /absolute/path`. Unknown deeper Scratch candidates are displayed but **not automatically removed**.
 
